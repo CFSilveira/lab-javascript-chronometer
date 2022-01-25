@@ -14,15 +14,23 @@ const milUniElement = document.getElementById('milUni');
 const splitsElement = document.getElementById('splits');
 
 function printTime() {
-  // ... your code goes here
+  // should I use the setInterval function?
+  printMinutes();
+  printSeconds();
 }
 
 function printMinutes() {
-  // ... your code goes here
+  let minutesNumber = chronometer.computeTwoDigitNumber(chronometer.getMinutes());
+  let minutesString = minutesNumber.toString();
+  minDecElement.innerHTML = minutesString.charAt(0);
+  minUniElement.innerHTML = minutesString.charAt(1);
 }
 
 function printSeconds() {
-  // ... your code goes here
+  let secondsNumber = chronometer.computeTwoDigitNumber(chronometer.getSeconds());
+  let secondsString = secondsNumber.toString();
+  secDecElement.innerHTML = secondsString.charAt(0)
+  secUniElement.innerHTML = secondsString.charAt(1);
 }
 
 // ==> BONUS
@@ -39,6 +47,7 @@ function clearSplits() {
 }
 
 function setStopBtn() {
+  chronometer.stop()
   // ... your code goes here
 }
 
@@ -47,6 +56,8 @@ function setSplitBtn() {
 }
 
 function setStartBtn() {
+  chronometer.start();
+  printTime();
   // ... your code goes here
 }
 
@@ -56,10 +67,39 @@ function setResetBtn() {
 
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
+  btnLeftElement.classList.toggle('start');
+  btnLeftElement.classList.toggle('stop');
+
+  if (btnLeftElement.innerHTML === 'START') {
+    btnLeftElement.innerHTML = 'STOP';
+    btnRightElement.innerHTML = 'SPLIT';
+    btnRightElement.classList.toggle('reset');
+    btnRightElement.classList.toggle('split');
+  } else {
+    btnLeftElement.innerHTML = 'START';
+    btnRightElement.innerHTML = 'RESET';
+    btnRightElement.classList.toggle('reset');
+    btnRightElement.classList.toggle('split');
+  }
+
+  if (btnLeftElement.classList === 'start') {
+    setStartBtn();
+  } else {
+    setStopBtn();
+  }
+  
   // ... your code goes here
 });
 
 // Reset/Split Button
 btnRightElement.addEventListener('click', () => {
+  btnRightElement.classList.toggle('reset');
+  btnRightElement.classList.toggle('split');
+
+  if (btnRightElement.innerHTML === 'RESET') {
+    btnRightElement.innerHTML = 'SPLIT';
+  } else {
+    btnRightElement.innerHTML = 'RESET';
+  }
   // ... your code goes here
 });
