@@ -40,7 +40,7 @@ function printSplit() {
 }
 
 function clearSplits() {
-  // ... your code goes here
+  splitsElement.innerHTML = '';
 }
 
 function setStopBtn() {
@@ -56,7 +56,7 @@ function setSplitBtn() {
   const parent = document.querySelector('#splits')
   parent.appendChild(newSplit);
 
-  // ... your code goes here
+  // ... your code goes h8ere
 }
 
 function setStartBtn() {
@@ -64,7 +64,9 @@ function setStartBtn() {
 }
 
 function setResetBtn() {
-  // ... your code goes here
+  chronometer.reset();
+  printTime();
+  
 }
 
 // Start/Stop Button
@@ -98,6 +100,9 @@ btnLeftElement.addEventListener('click', () => {
 btnRightElement.addEventListener('click', () => {
   if (btnRightElement.innerHTML === 'SPLIT') {
     setSplitBtn();
+  } else {
+    setResetBtn()
+    clearSplits();
   }
 
   // ... your code goes here
